@@ -17,6 +17,6 @@ use App\Http\Controllers\Api\ProdApiController;
 |
 */
 
-Route::get('/login', [LoginController::class, 'credencial']);
-Route::get('/promocion', [PromoApiController::class, 'promo']);
-Route::get('/producto', [ProdApiController::class, 'producto']);
+Route::post('/login', [LoginController::class, 'credencial']);
+Route::post('/promocion', [PromoApiController::class, 'promo']);
+Route::post('/producto', [ProdApiController::class, 'producto']);
