@@ -36,7 +36,7 @@
                 <li class="nav-item">
                     <a href="{{asset('/local')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Local</p>
+                    <p>Canal</p>
                     </a>
                 </li>
               <li class="nav-item">
@@ -54,7 +54,7 @@
               <li class="nav-item">
                 <a href="{{asset('/promociones')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Promociones</p>
+                  <p>Premios</p>
                 </a>
               </li>
 

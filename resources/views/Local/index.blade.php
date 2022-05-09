@@ -21,7 +21,7 @@
         <div class="col-md-12">
           <div class="card">
               <div class="card-header">
-                <h2 class="card-title">Locales</h2>
+                <h2 class="card-title">Canales</h2>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>

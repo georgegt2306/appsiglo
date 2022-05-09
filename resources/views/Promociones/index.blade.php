@@ -7,7 +7,7 @@
         <div class="col-md-12">
           <div class="card">
               <div class="card-header">
-                <h2 class="card-title">Promociones</h2>
+                <h2 class="card-title">Premios</h2>
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -47,6 +47,17 @@
             
             <div class="modal-body">               
                 
+              <div class="form-group row">
+                <label for="nombre" class="col-form-label col-sm-3">Local:</label>
+                  <div class="col-sm-8">
+                   <select class="form-control select2" name="local_vend" id="local_vend">
+                      <option value="T">Todos</option>
+                      @foreach($locales as $lc)
+                        <option value="{{$lc->id}}">{{$lc->nombre}}</option>
+                      @endforeach
+                   </select>
+                  </div>
+                </div>                  
                 <div class="form-group row">
                   <label for="nombre" class="col-form-label col-sm-3">Nombre:</label>
                   <div class="col-sm-8">
@@ -74,9 +85,7 @@
 
                 
 
-               
-
-                 <div class="form-group row">
+                <div class="form-group row">
                     <label for="nombre" class="col-form-label col-sm-3">Tiempo de Promo:</label>
                   <div class="col-sm-8">
                   <input class="form-control" type="text" name="rango" id="rango" >
@@ -111,6 +120,10 @@
   @stop
   @section('script')
   <script type="text/javascript">
+
+$('#local_vend').select2({
+      theme: 'bootstrap4'
+    })
 
 $('input[name="rango"]').daterangepicker({
     drops: 'up',
@@ -191,24 +204,6 @@ $('input[name="rango"]').daterangepicker({
         }
 
     consultar_tabla();
-
-
-
-
-
-
-  function mostrarUrl(){
-    var infourl = $("#url").val();
-    $('#imagePreviewUrl').html("<img src='"+infourl+"' width='150' heigth='150' onerror=errorurl(); >");
-    $("#validar").val('correcto');
-
-  }
-
-  function errorurl(){
-     $('#imagePreviewUrl').html("<b style='color:red;'>Imagen no encontrada</b>");
-     $("#url").val('');
-     $("#validar").val('incorrecto');
-  }
 
 
 

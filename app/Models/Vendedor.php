@@ -20,6 +20,7 @@ class Vendedor extends Model
         'ci_ruc',
         'nombre',
         'apellido',
+        'direccion',
         'email',
         'password',
         'remember_token',

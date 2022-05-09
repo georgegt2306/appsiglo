@@ -6,18 +6,21 @@ use Illuminate\Http\Request;
 use DB;
 use Hash;
 use App\Models\Promocion;
+use App\Models\Local;
 use Validator;
 use Input;
 
 class PromocionesController extends Controller
 {
     public function index(){
+        $locales=Local::select("id", "nombre")
+        ->whereNull("deleted_at")
+        ->get();
 
-        return view('Promociones.index');
+        return view('Promociones.index', compact('locales'));
       
    }
    public function consulta_data(){
-
 
           $result=Promocion::whereNull('deleted_at')
                 ->orderBy('id')
@@ -28,7 +31,7 @@ class PromocionesController extends Controller
           $titulos[] = array('title' => '');
           $titulos[] = array('title' => 'Acciones');
           $titulos[] = array('title' => 'Nombre');
-          $titulos[] = array('title' => 'Valor_Promoción');
+          $titulos[] = array('title' => 'Valor_Premio');
           $titulos[] = array('title' => 'Fecha_ini');
           $titulos[] = array('title' => 'Fecha_fin');
 
@@ -59,6 +62,7 @@ class PromocionesController extends Controller
 
             $id=Promocion::insertGetId(
             [ 'nombre'=>$request->nombre,
+              'id_local'=>$request->local_vend=='T'?NULL:$request->local_vend,
               'descripcion'=>$request->descripcion,
               'valor'=>$request->valor,
               'fecha_ini'=>$request->fecha_ini,
