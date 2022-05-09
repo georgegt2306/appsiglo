@@ -18,8 +18,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 	Route::post('/ingresar', 'LoginController@ingresar');
 	Route::get('/recuperar',function(){
-		
-		echo("hola mundo");
+		return view('Login.recuperar');
 	});
 
 	Route::get('/register', 'LoginController@registration');
