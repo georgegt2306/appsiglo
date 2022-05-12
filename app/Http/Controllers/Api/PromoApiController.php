@@ -15,7 +15,7 @@ class PromoApiController extends Controller
         if(!is_null($request->local)){
 
             $result=Promocion::whereNull('deleted_at')
-                ->whereNull('id_local')
+                ->where('id_local',0)
                 ->orderBy('id')
                 ->get();
         
