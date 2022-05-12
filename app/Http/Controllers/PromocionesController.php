@@ -62,7 +62,7 @@ class PromocionesController extends Controller
 
             $id=Promocion::insertGetId(
             [ 'nombre'=>$request->nombre,
-              'id_local'=>$request->local_vend=='T'?NULL:$request->local_vend,
+              'id_local'=>$request->local_vend=='T'?0:$request->local_vend,
               'descripcion'=>$request->descripcion,
               'valor'=>$request->valor,
               'fecha_ini'=>$request->fecha_ini,
