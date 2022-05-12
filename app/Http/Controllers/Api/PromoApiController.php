@@ -20,16 +20,20 @@ class PromoApiController extends Controller
                 ->get();
         
         
-            $result2=Promocion::whereNull('deleted_at')
+            if($request->local!=0){
+                
+                $result2=Promocion::whereNull('deleted_at')
                 ->Where('id_local', $request->local)
                 ->orderBy('id')
                 ->get();
-
-            if(count($result2)<1){
-                $result2=null;
+          
+                
+                if(count($result2)<1){
+                    $result2=null;
+                }
+                return response()->json(["sms"=>true,"promos"=>$result, "mispromos"=>$result2]);
             }
-
-            return response()->json(["sms"=>true,"promos"=>$result, "mispromos"=>$result2]);
+            return response()->json(["sms"=>true,"promos"=>$result, "mispromos"=>null]);
         }else{
             return response()->json(["sms"=>false,"mensaje"=>"Agregue Local"]);
         }
