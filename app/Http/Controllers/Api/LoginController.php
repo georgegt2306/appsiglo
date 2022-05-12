@@ -29,7 +29,8 @@ class LoginController extends Controller
                
                 if (password_verify($request->password,$result->password)) {
                      
-                      return response()->json(["sms"=>true,"mensaje"=>"Ingreso Correcto"]);
+                      return response()->json(["sms"=>true,"mensaje"=>"Ingreso Correcto","local"=>$result->id_local]);
+
                 }else{
                   return response()->json(["sms"=>false,"mensaje"=>"Credenciales invalidas"]);
                 }
