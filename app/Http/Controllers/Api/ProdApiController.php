@@ -13,34 +13,13 @@ class ProdApiController extends Controller
     {
         
         $result=Producto::where('cod_producto',$request->cod_producto)
-                ->whereNull('deleted_at','id_local')
+                ->whereNull('deleted_at')
                 ->orderBy('id')
                 ->first();
 
         return response()->json(["sms"=>true,"data"=>$result->valor_premio]);
         
-        // if(is_null($request->local)){
-        //     try {
-                
-        //         return response()->json(["sms"=>true,"data"=>$result]);
-        //     } catch(\Exception $e){
-        //         return response()->json(["sms"=>false,"data"=>"Error en respuesta"]);
-        //     }
 
-        // }else{
-        //     $result=Producto::whereNull('deleted_at')
-        //     ->Where('id_local', $request->local)
-        //     ->orderBy('id')
-        //     ->get();
-
-        //     if(count($result)>0){
-        //         return response()->json(["sms"=>true,"data"=>$result]);
-        //     }else{
-        //         return response()->json(["sms"=>false,"data"=>"Error en respuesta"]);
-        //     }
-
-           
-        // }
        
     }
 }
