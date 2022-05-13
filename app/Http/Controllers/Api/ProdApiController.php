@@ -18,12 +18,10 @@ class ProdApiController extends Controller
                 ->first();
 
         if(!is_null($result)){
-            return response()->json(["sms"=>true,"data"=>$result->valor_premio]);
+            return response()->json(["sms"=>true, "data"=>["cod_producto"=>$result->cod_producto, "nombre"=>$result->nombre, "valor"=>$result->valor_premio]]);
         }else{
             return response()->json(["sms"=>false,"data"=>"Codigo no existente"]);
         }
-        
-        
 
        
     }
