@@ -17,7 +17,7 @@ class ProdApiController extends Controller
                 ->orderBy('id')
                 ->first();
 
-        return response()->json(["sms"=>true,"data"=>$result->valor_premio]);
+        var_dump($result);
         
 
        
