@@ -17,7 +17,12 @@ class ProdApiController extends Controller
                 ->orderBy('id')
                 ->first();
 
-        var_dump($result);
+        if(!is_null($result)){
+            return response()->json(["sms"=>true,"data"=>$result->valor_premio]);
+        }else{
+            return response()->json(["sms"=>false,"data"=>"Codigo no existente"]);
+        }
+        
         
 
        
