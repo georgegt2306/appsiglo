@@ -11,12 +11,13 @@ class ProdApiController extends Controller
     
     public function producto(Request $request)
     {
-
-        $result=Producto::whereNull('deleted_at','id_local')
+        
+        $result=Producto::where('cod_producto',$request->cod_producto)
+                ->whereNull('deleted_at','id_local')
                 ->orderBy('id')
-                ->get();
+                ->first();
 
-        return response()->json(["sms"=>true,"data"=>$result]);
+        return response()->json(["sms"=>true,"data"=>$result->valor_premio]);
         
         // if(is_null($request->local)){
         //     try {
