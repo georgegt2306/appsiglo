@@ -100,7 +100,7 @@ class VendedorController extends Controller
    }
 
    public function edit($id){
-      $result_edit=User::where('id',$id)->first();
+      $result_edit=Vendedor::where('id',$id)->first();
 
       return view('Vendedor.edit', compact('result_edit','id'));
    }

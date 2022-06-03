@@ -11,7 +11,6 @@
             <div class="col-md-12">
 
 <input class="form-control" type="hidden" name="idunic" id="idunic" readonly="readonly"  value="{{$result_edit->id}}">
-
                 <div class="form-group row">
                     <label for="nombre_edit" class="col-form-label col-sm-3">Nombre:</label>
                   <div class="col-sm-8">

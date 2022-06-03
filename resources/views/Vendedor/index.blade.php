@@ -38,8 +38,8 @@
             </div>
             <div class="modal-body">
               
-              <div class="form-group row">
-                <label for="nombre" class="col-form-label col-sm-3">Local:</label>
+                <div class="form-group row">
+                  <label for="nombre" class="col-form-label col-sm-3">Local:</label>
                   <div class="col-sm-7">
                    <select class="form-control select2" name="local_vend" id="local_vend">
                       @foreach($locales as $lc)
@@ -51,7 +51,7 @@
                 <div class="form-group row">
                   <label for="ci_ruc" class="col-form-label col-sm-3">Cédula o Ruc:</label>
                   <div class="col-sm-7">
-                   <input  class="form-control" type="text" name="ci_ruc" id="ci_ruc" onkeypress="return justNumbers(event);" required pattern="[0-9]{10}|[0-9]{13}">  
+                   <input  class="form-control" type="text" name="ci_ruc" id="ci_ruc"  required>  
                    <div class="invalid-feedback">Ingrese Cédula o Ruc.</div> 
                     <span id="mensaje"></span>
                   </div>
