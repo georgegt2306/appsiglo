@@ -30,7 +30,7 @@ class LoginController extends Controller
             ->whereNull('deleted_at')
             ->first();
 
-            return response()->json(["sms"=>true,"mensaje"=>"Ingreso Correcto","local"=>$result->id_local, "codigo_c"=>$localres->ruc]);
+            return response()->json(["sms"=>true,"mensaje"=>"Ingreso Correcto","local"=>$result->id_local, "codigo_c"=>$localres->ruc; "codigo_v"=>$result->ci_ruc]);
           }else{
             return response()->json(["sms"=>false,"mensaje"=>"Credenciales invalidas"]);
           }
