@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PromoApiController;
 use App\Http\Controllers\Api\ProdApiController;
+use App\Http\Controllers\Api\ImagenApiController;
 
 /*
 |--------------------------------------------------------------------------
