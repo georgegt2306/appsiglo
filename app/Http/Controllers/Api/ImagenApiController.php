@@ -33,6 +33,8 @@ class ImagenApiController extends Controller
                 ]);
             
             DB::commit();
+
+            return response()->json(["sms"=>true,"mensaje"=>"Imagen guardada correctamente"]);
         }catch(\Exception $e){
             DB::rollBack();
             return response()->json(["sms"=>false,"mensaje"=>$e->getMessage()]);                 
