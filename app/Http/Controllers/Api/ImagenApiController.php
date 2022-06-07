@@ -25,7 +25,7 @@ class ImagenApiController extends Controller
         try {
             DB::beginTransaction();
         
-                Imagen::insert([ 
+                Images::insert([ 
                     'cod_vendedor'=>$request->vendedor,
                     'url_imagen'=>$path,
                     'updated_at' =>now(),
