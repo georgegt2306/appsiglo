@@ -9,7 +9,7 @@ class Images extends Model
 {
     use HasFactory;
 
-    protected $table = "images";
+    protected $table = "imagenes";
     protected $fillable = [
         'codigo_vendedor',
         'url_imagen'
