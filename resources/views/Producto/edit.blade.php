@@ -30,13 +30,21 @@
                     <div class="invalid-feedback">Ingrese Precio.</div> 
                   </div>
                 </div>
+                
                 <div class="form-group row">
                   <label for="vigencia_edit" class="col-form-label col-sm-3">Vigencia:</label>
                   <div class="col-sm-8">
-                      <input class="form-control" type="date" placeholder="Vigencia" name="vigencia_edit" id="vigencia_edit" value="{{ date('Y-m-d', strtotime($result_edit->vigencia)); }}">
+                    
+                    @php
+                    if(is_null($result_edit->vigencia))
+                    $fec_vigencia=null;
+                    else
+                    $fec_vigencia= date('Y-m-d', strtotime($result_edit->vigencia))
+                    @endphp
+                      <input class="form-control" type="date" placeholder="Vigencia" name="vigencia_edit" id="vigencia_edit" value="{{$fec_vigencia}}">
                   </div>
                 </div>
-                {{$result_edit->vigencia}}
+                
 
             </div>
 
