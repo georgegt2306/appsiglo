@@ -1,5 +1,5 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<form  class="needs-validation" id="edit_vendedor" autocomplete="off" novalidate>
+<form  class="needs-validation" id="edit_producto" autocomplete="off" novalidate>
    @csrf 
    {{ method_field('PUT') }}
     <div class="modal-header">
@@ -13,31 +13,30 @@
 
 <input class="form-control" type="hidden" name="idunic" id="idunic" readonly="readonly"  value="{{$result_edit->id}}">
 
-         
-                <div class="form-group row">
-                <label for="nombre_edit" class="col-form-label col-sm-3">Nombre:</label>
-                  <div class="col-sm-7">
-                   <input  class="form-control" type="text" name="nombre_edit" id="nombre_edit" value="{{$result_edit->nombre}}" required > 
-                   <div class="invalid-feedback" onkeypress="return soloLetras(event)">Ingrese Nombre.</div> 
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="apellido_edit" class="col-form-label col-sm-3">Apellido:</label>
-                    <div class="col-sm-7">
-                     <input class="form-control" type="text" name="apellido_edit" id="apellido_edit" value="{{$result_edit->apellido}}" required> 
-                     <div class="invalid-feedback" onkeypress="return soloLetras(event)">Ingrese Apellido.</div> 
-                    </div>
-                </div>
 
                
                 <div class="form-group row">
-                  <label for="direccion" class="col-form-label col-sm-3">Dirección:</label>
+                  <label for="descripcion_edit" class="col-form-label col-sm-3">Descripción:</label>
                   <div class="col-sm-7">
-                    <textarea class="form-control" name="direccion_edit" id="direccion_edit" cols="30" rows="3" required>{{$result_edit->direccion}}</textarea>  
+                    <textarea class="form-control" name="descripcion_edit" id="descripcion_edit" cols="30" rows="3" required>{{$result_edit->descripcion}}</textarea>  
                      <div class="invalid-feedback">Ingrese Dirección.</div> 
                   </div>
                 </div>
 
+                <div class="form-group row">
+                  <label for="valor_premio_edit" class="col-form-label col-sm-3">Precio:</label>
+                  <div class="col-sm-8">
+                      <input class="form-control" type="text" placeholder="Precio" name="valor_premio_edit" id="valor_premio_edit" onkeypress="return Lim_index(event,this);" required pattern="[0-9]{1,4}([.]{1}?([0-9]{1,2})?)?" value="{{$result_edit->valor_premio}}">
+                    <div class="invalid-feedback">Ingrese Precio.</div> 
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="vigencia_edit" class="col-form-label col-sm-3">Vigencia:</label>
+                  <div class="col-sm-8">
+                      <input class="form-control" type="date" placeholder="Vigencia" name="vigencia_edit" id="vigencia_edit" value="{{ date('Y-m-d', strtotime($result_edit->vigencia)); }}">
+                  </div>
+                </div>
+                {{$result_edit->vigencia}}
 
             </div>
 
@@ -58,7 +57,7 @@
 
 
 
-    var form2=document.getElementById('edit_vendedor');
+    var form2=document.getElementById('edit_producto');
 
     form2.addEventListener('submit', (event) => {
      event.preventDefault();
@@ -67,7 +66,7 @@
       }else {
         const edit_sup = new FormData(form2); 
             $.ajax({
-                url:"{{asset('')}}vendedor/{{$result_edit->id}}",
+                url:"{{asset('')}}producto/{{$result_edit->id}}",
                 type: 'POST',
                 dataType: 'json',
                 contentType: false,
@@ -100,16 +99,37 @@
     }, false);
 
 
+    function Lim_index(evt, input) {
+            var key = window.Event ? evt.which : evt.keyCode;
+            var chark = String.fromCharCode(key);
+            var tempValue = input.value + chark;
+ 
+
+            if (key==46 || (key >= 48 && key <= 57)  ) {
+                if (filter_index(tempValue) === false) {
+                    return false;
+                } else {                  
+                    return true;
+                }
+            } else {
+                if (key == 8 || key == 13 || key == 0 || key == 188) {
+                    return true;
+                }  else {
+                    return false;
+                }
+            }
+        }
 
 
-    function mostrarPassword2(){
-    var cambio = document.getElementById("contra_edit");
-    if(cambio.type == "password"){
-      cambio.type = "text";
-      $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
-    }else{
-      cambio.type = "password";
-      $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
-    }
-  } 
+        function filter_index(_val_) {
+            var regexp = /^[0-9]{1,4}([.]{1}?([0-9]{1,2})?)?$/;
+
+            if (regexp.test(_val_) === true) {
+                return true;
+            } else {
+                return false;
+            }
+
+        }
+
 </script>

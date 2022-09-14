@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Hash;
-use App\Models\Vendedor;
-use App\Models\Local;
 use Validator;
 use Input;
+use App\Models\Vendedor;
+use App\Models\Local;
 
 class VendedorController extends Controller
 {
@@ -105,18 +105,19 @@ class VendedorController extends Controller
       return view('Vendedor.edit', compact('result_edit','id'));
    }
 
-   public function update($id){
+   public function update($id, Request $request){
       $userid = \Auth::id();
 
       try {
          DB::beginTransaction();
-            User::where('id', $id)->update([
-               'ci_ruc' => Input::get('ci_ruc_edit'),
-               'nombre' => Input::get('nombre_edit'),
-               'apellido' => Input::get('apellido_edit'),
-               'direccion' => Input::get('direccion_edit'),
+
+            Vendedor::where('id', $id)->update([
+               'nombre' => $request->nombre_edit,
+               'apellido' => $request->apellido_edit,
+               'direccion' => $request->direccion_edit,
                'user_updated' => $userid
             ]);
+
          DB::commit();
          return response()->json(["sms"=>true, "mensaje"=>"Se edito correctamente"]);
       }catch(\Exception $e){
@@ -131,7 +132,7 @@ class VendedorController extends Controller
           {
             DB::beginTransaction();
 
-            User::where('id', $id)->update([
+            Vendedor::where('id', $id)->update([
                'updated_at' =>now(),
                'deleted_at' =>now(),
                'user_updated' => $userid

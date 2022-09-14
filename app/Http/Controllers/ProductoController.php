@@ -21,10 +21,9 @@ class ProductoController extends Controller
     public function consulta_data(){
         $userid = \Auth::id();
 
-
-          $result=Producto::whereNull('deleted_at')
-                ->orderBy('id')
-                ->get();
+        $result=Producto::whereNull('deleted_at')
+        ->orderBy('id')
+        ->get();
       
 
           $titulos = [];
@@ -61,19 +60,17 @@ class ProductoController extends Controller
         try {
             DB::beginTransaction();
 
-            Producto::create(
-            [ 'cod_producto'=>$request->cod_producto,
+            Producto::create([
+               'cod_producto'=>$request->cod_producto,
               'nombre'=>$request->nombre,
               'descripcion'=>$request->descripcion,              
               'valor_premio'=>$request->valor_premio,
               'updated_at' =>now(),
               'created_at' =>now(),
-              'user_updated' => $userid
-
+              'user_updated' => $userid,
+              'vigencia' => $request->vigencia
             ]);
             
-
-
             DB::commit();
                 
             return response()->json(["sms"=>true,"mensaje"=>"Se creo correctamente"]);                    
@@ -100,39 +97,18 @@ class ProductoController extends Controller
 
     public function update(Request $request){
         $userid = \Auth::id(); 
-        $path=$request->imagenanterior;
 
-        if($archivo=$request->file('imagen_edit')){
-            if(file_exists('images/productos/'.$request->idunic.'.png')){
-                unlink('images/productos/'.$request->idunic.'.png'); 
-            } 
-            $path= asset('images/productos/'.$request->idunic.'.png');
-            $archivo->move('images/productos', $request->idunic.'.png');
-        } 
-
-        if($request->url_edit != ''){
-            if(file_exists('images/productos/'.$request->idunic.'.png')){
-                unlink('images/productos/'.$request->idunic.'.png'); 
-            } 
-            $path=$request->url_edit;
-        }
 
         try {
           DB::beginTransaction();
          
           $cons_insp_cab= Producto::where('id', '=', $request->idunic)
           ->update(['updated_at' =>now(), 
-              'nombre'=>$request->nombre_edit,
-              'descripcion'=>$request->descripcion_edit,
-              'costo'=>$request->costo_edit,
-              'precio'=>$request->precio_edit,
-              'unidad'=>$request->unidad_edit,
-              'existencia'=>$request->existencia_edit,
-              'descuento'=>$request->descuento_edit,
-              'tasa_iva'=>$request->iva_edit,
-              'url_imagen' =>$path==null?'https://pasarelamercy.online/images/producto.png':$path,
-              'user_updated' => $userid]);
-
+            'descripcion'=>$request->descripcion_edit,              
+            'valor_premio'=>$request->valor_premio_edit,
+            'user_updated' => $userid,
+            'vigencia' => $request->vigencia_edit]);
+            
             DB::commit();
                 
             return response()->json(["sms"=>true,"mensaje"=>"Se edito correctamente"]);                

@@ -16,6 +16,7 @@ class Producto extends Model
         'descripcion',
         'valor_premio',
         'user_updated',
+        'vigencia'
     ];
 
     public $timestamps = false;

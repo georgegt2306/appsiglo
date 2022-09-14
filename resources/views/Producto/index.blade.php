@@ -80,6 +80,12 @@
                 </div>
 
 
+                <div class="form-group row">
+                  <label for="vigencia" class="col-form-label col-sm-3">Vigencia:</label>
+                  <div class="col-sm-8">
+                      <input class="form-control" type="date" placeholder="Vigencia" name="vigencia" id="vigencia" >
+                  </div>
+                </div>
 
               
             </div>
