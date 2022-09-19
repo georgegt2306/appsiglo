@@ -15,6 +15,13 @@ class Producto extends Model
         'nombre',
         'descripcion',
         'valor_premio',
+        'marca',
+        'nivel1',
+        'NombreNivel1',
+        'nivel2',
+        'NombreNivel2',
+        'nivel3',
+        'NombreNivel3',
         'user_updated',
         'vigencia'
     ];

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\PromoApiController;
 use App\Http\Controllers\Api\ProdApiController;
 use App\Http\Controllers\Api\ImagenApiController;
+use App\Http\Controllers\Api\SyncproductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::post('/promocion', [PromoApiController::class, 'promo']);
 Route::post('/producto', [ProdApiController::class, 'producto']);
 
 Route::post('/imagen', [ImagenApiController::class, 'cargaimagen']);
+
+Route::post('/syncpro',[SyncproductController::class, 'rel_categ']);
