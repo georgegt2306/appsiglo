@@ -46,9 +46,13 @@ class SyncproductController extends Controller
         ]);
 
         $update=json_decode($info->body());
-        // $update2=($update->data[0]);
 
-        var_dump($update);
+        if(isset($update->data[0])){
+            $update2=($update->data[0]);
+            var_dump($update2);
+        }
+        
+
         // Producto::where('cod_producto', $codigo_producto)->update([
         //     'marca' => $update2->Marca,
         //     'nivel1'=> $update2->Nivel1,
