@@ -16,23 +16,24 @@ class SyncproductController extends Controller
 
         $consulta=Producto::select('cod_producto')->get();
 
-        try {
-            DB::beginTransaction();
+        var_dump($consulta);
+        // try {
+        //     DB::beginTransaction();
         
-        foreach($consulta as $obt){
+        // foreach($consulta as $obt){
             
-            $this->actualizacioncateg($obt->cod_producto);
+        //     $this->actualizacioncateg($obt->cod_producto);
 
-            $this->addurl($obt->cod_producto);
+        //     $this->addurl($obt->cod_producto);
 
-        }
-        DB::commit();
+        // }
+        // DB::commit();
 
-            return response()->json(["sms"=>true,"mensaje"=>"Se proceso correctamente"]);
-        }catch(\Exception $e){
-            DB::rollBack();
-            return response()->json(["sms"=>false,"mensaje"=>$e->getMessage()]);                 
-        }
+        //     return response()->json(["sms"=>true,"mensaje"=>"Se proceso correctamente"]);
+        // }catch(\Exception $e){
+        //     DB::rollBack();
+        //     return response()->json(["sms"=>false,"mensaje"=>$e->getMessage()]);                 
+        // }
 
        
     }

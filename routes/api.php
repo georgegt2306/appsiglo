@@ -20,7 +20,9 @@ use App\Http\Controllers\Api\SyncproductController;
 */
 
 Route::post('/login', [LoginController::class, 'credencial']);
+
 Route::post('/promocion', [PromoApiController::class, 'promo']);
+
 Route::post('/producto', [ProdApiController::class, 'producto']);
 
 Route::post('/imagen', [ImagenApiController::class, 'cargaimagen']);
