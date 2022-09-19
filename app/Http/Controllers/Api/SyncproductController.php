@@ -22,7 +22,7 @@ class SyncproductController extends Controller
         foreach($consulta as $obt){
             
             $this->actualizacioncateg($obt->cod_producto);
-
+            $this->addurl($obt->cod_producto);
            
 
         }
@@ -49,19 +49,21 @@ class SyncproductController extends Controller
 
         if(isset($update->data[0])){
             $update2=($update->data[0]);
-            var_dump($update2);
+
+            Producto::where('cod_producto', $codigo_producto)->update([
+                'marca' => $update2->Marca,
+                'nivel1'=> $update2->Nivel1,
+                'NombreNivel1'=> $update2->NombreNivel1,
+                'nivel2'=> $update2->Nivel2,
+                'NombreNivel2'=> $update2->NombreNivel2,
+                'nivel3'=> $update2->Nivel3,
+                'NombreNivel3'=> $update2->NombreNivel3
+            ]);
+           
         }
         
 
-        // Producto::where('cod_producto', $codigo_producto)->update([
-        //     'marca' => $update2->Marca,
-        //     'nivel1'=> $update2->Nivel1,
-        //     'NombreNivel1'=> $update2->NombreNivel1,
-        //     'nivel2'=> $update2->Nivel2,
-        //     'NombreNivel2'=> $update2->NombreNivel2,
-        //     'nivel3'=> $update2->Nivel3,
-        //     'NombreNivel3'=> $update2->NombreNivel3
-        // ]);
+
     }
 
     public function addurl($codigo_producto){
@@ -70,11 +72,15 @@ class SyncproductController extends Controller
         ]);
 
         $update=json_decode($info->body());
-        $update2=($update->data[0]);
 
-        Producto::where('cod_producto', $codigo_producto)->update([
-            'url_image' => $update2->url_image
-        ]);
+        if(isset($update->data[0])){
+            $update2=($update->data[0]);
+
+            Producto::where('cod_producto', $codigo_producto)->update([
+                'url_image' => $update2->url_image
+            ]);
+
+        }
 
     }
 }
