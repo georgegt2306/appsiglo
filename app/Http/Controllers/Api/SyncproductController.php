@@ -23,7 +23,7 @@ class SyncproductController extends Controller
             
             $this->actualizacioncateg($obt->cod_producto);
 
-            $this->addurl($obt->cod_producto);
+           
 
         }
         DB::commit();
