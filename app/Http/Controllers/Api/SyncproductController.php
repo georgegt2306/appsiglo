@@ -45,7 +45,7 @@ class SyncproductController extends Controller
             'codigoproducto' => $codigo_producto,
         ]);
 
-        var_dump($info);
+        var_dump($info->body());
         // $update=json_decode($info->body());
         // $update2=($update->data[0]);
 
