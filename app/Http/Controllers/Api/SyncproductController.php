@@ -14,7 +14,7 @@ class SyncproductController extends Controller
     public function rel_categ(Request $request)
     {
 
-        $consulta=Producto::select('cod_producto')->get();
+        $consulta=Producto::select('cod_producto')->whereNull('deleted_at')->get();
 
         try {
             DB::beginTransaction();
@@ -23,7 +23,7 @@ class SyncproductController extends Controller
             
             $this->actualizacioncateg($obt->cod_producto);
 
-            // $this->addurl($obt->cod_producto);
+            $this->addurl($obt->cod_producto);
 
         }
         DB::commit();
