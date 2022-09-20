@@ -50,7 +50,9 @@
  <div class="modal fade" id="modalcreate" tabindex="-1" role="dialog" aria-labelledby="modalcreateTitle" aria-hidden="true"     data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
           <div class="modal-content">
-            <form class="needs-validation" id="crear_local" autocomplete="off"  novalidate>
+           
+          <!-- //////////////////////////////////////////////////////// -->
+          <form class="needs-validation" id="crear_local" autocomplete="off"  novalidate>
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">Nuevo</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -83,6 +85,7 @@
               <button type="submit" class="btn btn-primary" >Guardar</button>
             </div>
         </form>
+        <!-- //////////////////////////////////////////////////////////////// -->
           </div>
         </div>
       </div>
@@ -147,7 +150,9 @@
     var form=document.getElementById('crear_local');
     
     form.addEventListener('submit', (event) => {
+
     event.preventDefault();
+
       if (!form.checkValidity()) {
         event.stopPropagation();
         form.classList.add('was-validated');

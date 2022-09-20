@@ -28,3 +28,5 @@ Route::post('/producto', [ProdApiController::class, 'producto']);
 Route::post('/imagen', [ImagenApiController::class, 'cargaimagen']);
 
 Route::post('/syncpro',[SyncproductController::class, 'rel_categ']);
+
+Route::post('/consultatodo',[ProdApiController::class, 'totalproduct']);

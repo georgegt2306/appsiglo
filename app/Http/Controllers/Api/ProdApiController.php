@@ -22,7 +22,22 @@ class ProdApiController extends Controller
         }else{
             return response()->json(["sms"=>false,"data"=>"Codigo no existente"]);
         }
+       
+    }
 
+    
+    public function totalproduct(Request $request)
+    {
+        
+        $result= Producto::paginate(10);
+
+        return response()->json(["sms"=>true, "data"=>$result]);
+        // if(!is_null($result)){
+        //     return response()->json(["sms"=>true, "data"=>["cod_producto"=>$result->cod_producto, "nombre"=>$result->nombre, "valor"=>$result->valor_premio]]);
+        // }else{
+        //     return response()->json(["sms"=>false,"data"=>"Codigo no existente"]);
+        // }
        
     }
 }
+
