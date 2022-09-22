@@ -29,6 +29,8 @@ class ProdApiController extends Controller
     {
 
         $filtros=[];
+        
+        
         if(strcmp($request->marca,'')!=0){
             array_push($filtros, ['marca','=',$request->marca]);
         }
@@ -43,9 +45,14 @@ class ProdApiController extends Controller
         }       
         if(strcmp($request->nombre,'')!=0){
             array_push($filtros, ['nombre','LIKE', '%'.$request->nombre.'%']);
-        }   
+        }
+        
+        
+        
 
-        $result= Producto::where($filtros)->WhereNull('deleted_at')->paginate(30);
+
+
+        $result= Producto::where($filtros)->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])->WhereNull('deleted_at')->paginate(30);
 
         return response()->json(["sms"=>true, "data"=>$result ]);
        
