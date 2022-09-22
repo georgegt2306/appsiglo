@@ -45,7 +45,7 @@ class ProdApiController extends Controller
             array_push($filtros, ['nombre','LIKE', '%'.$request->nombre.'%']);
         }   
 
-        $result= Producto::where($filtros)->WhereNull('deleted_at')->cursorPaginate();
+        $result= Producto::where($filtros)->WhereNull('deleted_at')->paginate(30);
 
         return response()->json(["sms"=>true, "data"=>$result ]);
        
