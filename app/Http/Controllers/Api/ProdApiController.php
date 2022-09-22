@@ -43,8 +43,8 @@ class ProdApiController extends Controller
         if(strcmp($request->NombreNivel3,'')!=0){
             array_push($filtros, ['NombreNivel3','=',$request->NombreNivel3]);
         }       
-        if(strcmp($request->nombre,'')!=0){
-            array_push($filtros, ['nombre','LIKE', '%'.$request->nombre.'%']);
+        if(strcmp($request->descripcion,'')!=0){
+            array_push($filtros, ['descripcion','LIKE', '%'.$request->descripcion.'%']);
         }
         
         
@@ -52,7 +52,10 @@ class ProdApiController extends Controller
 
 
 
-        $result= Producto::where($filtros)->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])->WhereNull('deleted_at')->paginate(30);
+        $result= Producto::select('url_image', 'id', 'cod_producto', 'descripcion', 'valor_premio')
+        ->where($filtros)
+        ->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])
+        ->WhereNull('deleted_at')->paginate(30);
 
         return response()->json(["sms"=>true, "data"=>$result ]);
        
