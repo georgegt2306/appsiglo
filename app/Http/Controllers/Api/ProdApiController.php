@@ -52,7 +52,7 @@ class ProdApiController extends Controller
 
 
 
-        $result= Producto::select('url_image', 'id', 'cod_producto', 'descripcion', 'valor_premio')
+        $result= Producto::select('id', 'url_image', 'cod_producto', 'descripcion', 'valor_premio','vigencia')
         ->where($filtros)
         ->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])
         ->WhereNull('deleted_at')->paginate(30);
