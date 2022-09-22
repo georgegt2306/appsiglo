@@ -24,7 +24,16 @@ class ProdApiController extends Controller
        
     }
 
+    public function clasificacion(Request $request){        
+       $marca=Producto::select('marca')->groupBy('marca')->get();
+       $NombreNivel1=Producto::select('NombreNivel1')->groupBy('NombreNivel1')->get();
+       $NombreNivel2=Producto::select('NombreNivel2')->groupBy('NombreNivel2')->get();
+       $NombreNivel3=Producto::select('NombreNivel3')->groupBy('NombreNivel3')->get();
+
+        return response()->json(["sms"=>true, "marcas"=>$marca, "NombreNivel1"=>$NombreNivel1, "NombreNivel2"=>$NombreNivel2, "NombreNivel3"=>$NombreNivel3]);
+    }
     
+
     public function totalproduct(Request $request)
     {
 
@@ -47,11 +56,7 @@ class ProdApiController extends Controller
             array_push($filtros, ['descripcion','LIKE', '%'.$request->descripcion.'%']);
         }
         
-        
-        
-
-
-
+    
         $result= Producto::select('id', 'url_image', 'cod_producto', 'descripcion', 'valor_premio','vigencia')
         ->where($filtros)
         ->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])

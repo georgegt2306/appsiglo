@@ -30,3 +30,5 @@ Route::post('/imagen', [ImagenApiController::class, 'cargaimagen']);
 Route::post('/syncpro',[SyncproductController::class, 'rel_categ']);
 
 Route::post('/consultatodo',[ProdApiController::class, 'totalproduct']);
+
+Route::post('/clasificacion_pro',[ProdApiController::class, 'clasificacion']);
