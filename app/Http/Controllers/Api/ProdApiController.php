@@ -26,11 +26,9 @@ class ProdApiController extends Controller
 
     public function clasificacion(Request $request){        
        $marca=Producto::select('marca')->groupBy('marca')->get();
-       $NombreNivel1=Producto::select('NombreNivel1')->groupBy('NombreNivel1')->get();
-       $NombreNivel2=Producto::select('NombreNivel2')->groupBy('NombreNivel2')->get();
        $NombreNivel3=Producto::select('NombreNivel3')->groupBy('NombreNivel3')->get();
 
-        return response()->json(["sms"=>true, "marcas"=>$marca, "NombreNivel1"=>$NombreNivel1, "NombreNivel2"=>$NombreNivel2, "NombreNivel3"=>$NombreNivel3]);
+        return response()->json(["sms"=>true, "marcas"=>$marca, "NombreNivel3"=>$NombreNivel3]);
     }
     
 
@@ -38,19 +36,13 @@ class ProdApiController extends Controller
     {
 
         $filtros=[];
-        
-        
+
+         
         if(strcmp($request->marca,'')!=0){
-            array_push($filtros, ['marca','=',$request->marca]);
-        }
-        if(strcmp($request->NombreNivel1,'')!=0){
-            array_push($filtros, ['NombreNivel1','=',$request->NombreNivel1]);
-        }
-        if(strcmp($request->NombreNivel2,'')!=0){
-            array_push($filtros, ['NombreNivel2','=',$request->NombreNivel2]);
+            array_push($filtros, ['marca','=',strtoupper($request->marca)]);
         }
         if(strcmp($request->NombreNivel3,'')!=0){
-            array_push($filtros, ['NombreNivel3','=',$request->NombreNivel3]);
+            array_push($filtros, ['NombreNivel3','=',strtoupper($request->NombreNivel3)]);
         }       
         if(strcmp($request->descripcion,'')!=0){
             array_push($filtros, ['descripcion','LIKE', '%'.$request->descripcion.'%']);
