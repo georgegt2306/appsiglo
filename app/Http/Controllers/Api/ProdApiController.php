@@ -52,7 +52,7 @@ class ProdApiController extends Controller
         $result= Producto::select('id', 'url_image', 'cod_producto', 'descripcion', 'valor_premio','vigencia')
         ->where($filtros)
         ->WhereNull('vigencia')->orWhere([['vigencia','>=', date('Y-m-d h:i:s')]])
-        ->WhereNull('deleted_at')->cursorPaginate(30);
+        ->WhereNull('deleted_at')->simplePaginate(30);
 
         return response()->json(["sms"=>true, "data"=>$result ]);
        
