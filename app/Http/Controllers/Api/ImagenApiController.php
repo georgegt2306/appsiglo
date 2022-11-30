@@ -27,10 +27,9 @@ class ImagenApiController extends Controller
                 Images::insert([ 
                     'codigo_vendedor'=>$request->vendedor,
                     'url_imagen'=>$path,
+					'codigo_identificador'=>$request->codigoIdentificador,
                     'updated_at' =>now(),
                     'created_at' =>now(),
-					'codigo_identificador'=>$request->codigoIdentificador,
-
                 ]);
             
             DB::commit();

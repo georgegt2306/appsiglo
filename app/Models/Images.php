@@ -12,7 +12,8 @@ class Images extends Model
     protected $table = "imagenes";
     protected $fillable = [
         'codigo_vendedor',
-        'url_imagen'
+        'url_imagen',
+		'codigo_identificador'
     ];
 
 }
